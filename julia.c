@@ -2,10 +2,11 @@
 
 int	ft_jul_iterate(t_fract *fract ,float x, float y, float max_iterate)
 {
-	float	reale_num;
-	float	imge_num;
-	float	reale;
+	double	reale_num;
+	double	imge_num;
+	double	reale;
 	int		iterate;
+	t_complex	c;
 
 	iterate = 0;
 	reale_num = x;
@@ -13,8 +14,8 @@ int	ft_jul_iterate(t_fract *fract ,float x, float y, float max_iterate)
 	while(iterate < max_iterate)
 	{
 		reale = reale_num;
-		reale_num = ft_powf(reale_num, 2) - ft_powf(imge_num, 2) + 0;
-		imge_num = (2 * reale * imge_num) + 0;
+		reale_num = ft_powf(reale_num, 2) - ft_powf(imge_num, 2) + fract->c.real;
+		imge_num = (2 * reale * imge_num) + fract->c.imag;
 		if(ft_powf(reale_num, 2) +  ft_powf(imge_num, 2) >= 4)
 			break;
 		iterate++;
@@ -45,21 +46,32 @@ void	ft_julia(t_fract *fract)
 	mlx_put_image_to_window(fract->mlx, fract->mlx_win, fract->img.img, 0, 0);
 }
 
-t_complex	julia_orient(t_display *mlx, int par)
+void	julia_orient(t_complex *c)
 {
-	t_complex	c;
-
-	if (!par)
-		c = (t_complex){.real = -0.4, .imag = 0.6};
-	else if (par == 1)
-		c = (t_complex){.real = -0.8, .imag = 0.156};
-	else if (par == 2)
-		c = (t_complex){.real = -0.7269, .imag = 0.1889};
-	else if (par == 3)
-		c = (t_complex){.real = -0.203333, .imag = -0.696667};
-	else if (par == 4)
-		c = (t_complex){.real = 0.0, .imag = -0.8};
-	else if (par == 5)
-		c = (t_complex){.real = 0.371504, .imag = -0.153893};
-	return (c);
+	printf("%d\n", c->par);
+	if (!c->par)
+	{
+		c->real = -0.4;
+		c->imag = 0.6;
+	}
+	else if (c->par == 1){
+		c->real = -0.8;
+		c->imag = 0.156;
+	}
+	else if (c->par == 2){
+		c->real = -0.7269;
+		c->imag = 0.1889;
+	}	
+	else if (c->par == 3){
+		c->real = -0.203333;
+		c->imag = -0.696667;
+	}
+	else if (c->par == 4){
+		c->real = 0.0;
+		c->imag = -0.8;
+	}
+	else if (c->par == 5){
+		c->real = 0.371504;
+		c->imag = -0.153893;
+	}
 }

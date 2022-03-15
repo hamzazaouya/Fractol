@@ -2,9 +2,9 @@
 
 int	ft_brot_iterate(t_fract *fract ,float x, float y, float max_iterate)
 {
-	float	reale_num;
-	float	imge_num;
-	float	reale;
+	double	reale_num;
+	double	imge_num;
+	double	reale;
 	int		iterate;
 
 	iterate = 0;

@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-float ft_powf(float num, int pow){
+double ft_powf(double num, int pow){
     int i;
     float temp;
 

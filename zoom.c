@@ -2,11 +2,11 @@
 
 int    zoom_control(int key, int x, int y, t_fract *fract)
 {
-    double zoom_factor = 2;
+    double zoom_factor = 0.5;
 
     if (key == 5)
     {
-        fract->interp /=  zoom_factor;
+        fract->interp *=  zoom_factor;
         zoom_in(fract, x, y);
         fract->max_iterate += 20;
     }
@@ -15,10 +15,12 @@ int    zoom_control(int key, int x, int y, t_fract *fract)
         zoom_out(fract, x, y);
         if(fract->max_iterate > 60)
             fract->max_iterate -= 20;
-        fract->interp *= zoom_factor;
+        fract->interp /= zoom_factor;
     }
-    if(fract->fract_type == 0)
+    if(fract->fract_type == 1)
         ft_mandelbrot(fract);
+    if(fract->fract_type == 2)
+        ft_julia(fract);
     return (0);
 }
 
