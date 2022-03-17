@@ -20,6 +20,13 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+int	destroy(t_fract *fract)
+{
+	mlx_destroy_image(fract->mlx, fract->img.img);
+	mlx_destroy_window(fract->mlx, fract->mlx_win);
+	exit(0);
+}
+
 void	ft_make_fract(t_fract *fract)
 {
 	fract->mlx = mlx_init();
@@ -32,6 +39,7 @@ void	ft_make_fract(t_fract *fract)
 	ft_fractal(fract);
 	mlx_mouse_hook (fract->mlx_win, zoom_control, fract);
 	mlx_key_hook (fract->mlx_win, key_control, fract);
+	mlx_hook(fract->mlx_win, 17, 0L, destroy, fract);
 	mlx_put_image_to_window(fract->mlx, fract->mlx_win, fract->img.img, 0, 0);
 	mlx_loop(fract->mlx);
 }

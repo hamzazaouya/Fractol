@@ -28,14 +28,12 @@ int	ft_strcmp(char *s1, char *s2)
 
 void	ft_init(t_fract *fract)
 {
-	fract->re_max = 2.0;
 	fract->re_min = -2.0;
 	fract->im_max = 2.0;
-	fract->im_min = -2.0;
 	fract->key_ctr = 0;
 	fract->fract_type = 0;
 	fract->c.par = 0;
-	fract->interp = (fract->re_max) / (WIDTH / 2.0);
+	fract->interp = 4.0 / WIDTH;
 	fract->max_iterate = 60;
 }
 
@@ -47,7 +45,7 @@ void	ft_msg(void)
 	write(1, "-> Mandelbrot\n\n", 15);
 	write(1, "-> Julia [From 0 To 5]\n\n", 24);
 	write(1, "-> Tricorn\n", 11);
-	write(1, "\n<------------------------------------------------->\n", 70);
+	write(1, "\n<------------------------------------------------->\n", 54);
 }
 
 int	calc_color(t_fract *fract, int i)
@@ -56,8 +54,8 @@ int	calc_color(t_fract *fract, int i)
 	double	div;
 
 	div = (double)i / fract->max_iterate;
-	rgb[0] = 9 * (1 - div) * (int )ft_powf(div, 3) * 255;
-	rgb[1] = 15 * (int )ft_powf((1 - div), 2) * (int )ft_powf(div, 2) * 255;
-	rgb[2] = 9 * (int )ft_powf((1 - div), 3) * div * 255;
+	rgb[0] = 9 * (1 - div) * (div * div * div) * 255;
+	rgb[1] = 15 * ((1 - div) * (1 - div)) * (div * div) * 255;
+	rgb[2] = 9 * ((1 - div) * (1 - div) * (1 - div)) * div * 255;
 	return (0 << 24 | rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }

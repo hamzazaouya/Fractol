@@ -12,7 +12,7 @@
 
 #include "../includes/fractol.h"
 
-int	ft_mandelbrot(t_fract *fract, float x, float y)
+int	ft_mandelbrot(t_fract *fract, double x, double y)
 {
 	double	reale_num;
 	double	imge_num;
@@ -36,7 +36,7 @@ int	ft_mandelbrot(t_fract *fract, float x, float y)
 	return (calc_color(fract, iterate));
 }
 
-int	ft_julia(t_fract *fract, float x, float y)
+int	ft_julia(t_fract *fract, double x, double y)
 {
 	double		reale_num;
 	double		imge_num;
@@ -74,11 +74,11 @@ void	ft_fractal(t_fract *fract)
 		while (j < WIDTH)
 		{
 			if (fract->fract_type == 1)
-				color = ft_mandelbrot(fract, fract->re_min + j * \
-				fract->interp, fract->im_max - i * fract->interp);
+				color = ft_mandelbrot(fract, fract->re_min + (j * \
+				fract->interp), fract->im_max - (i * fract->interp));
 			else if (fract->fract_type == 2)
-				color = ft_julia(fract, fract->re_min + j * \
-				fract->interp, fract->im_max - i * fract->interp);
+				color = ft_julia(fract, fract->re_min + (j * \
+				fract->interp), fract->im_max - (i * fract->interp));
 			my_mlx_pixel_put(&fract->img, j, i, color);
 			j++;
 		}

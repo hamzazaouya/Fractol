@@ -15,8 +15,8 @@
 # include <stdlib.h>
 # include <mlx.h>
 # include <unistd.h>
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 600.0
+# define HEIGHT 600.0
 
 typedef struct s_data {
 	void	*img;
@@ -36,8 +36,6 @@ typedef struct fract{
 	void		*mlx;
 	void		*mlx_win;
 	double		im_max;
-	double		im_min;
-	double		re_max;
 	double		re_min;
 	double		re_ftr;
 	double		im_ftr;
@@ -49,7 +47,6 @@ typedef struct fract{
 	t_data		img;
 }	t_fract;
 
-int		HSVtoRGB(float H, float S, float V, int key_ctr);
 int		zoom_control(int key, int x, int y, t_fract *fract);
 void	zoom_in(t_fract *fract, int x, int y);
 void	zoom_out(t_fract *fract, int x, int y);
@@ -58,7 +55,7 @@ double	ft_powf(double num, int pow);
 int		ft_getcolor(t_fract *fract, int iterate);
 void	ft_fractal(t_fract *fract);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		ft_julia(t_fract *fract, float x, float y);
+int		ft_julia(t_fract *fract, double x, double y);
 int		key_control(int key, t_fract *fract);
 void	ft_init(t_fract *fract);
 int		ft_check(t_fract *fract, char *str, int arc);
